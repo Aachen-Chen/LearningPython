@@ -35,12 +35,13 @@ def plotMLE_all(X, theta, input="DataFrame"):
 
     likelihood_df.plot(x="theta", grid=True, markevery=[4,10, 50])
 
-def plotMLE(X, theta, input="DataFrame"):
-
+def plotMLE(X, theta, input="DataFrame", plot_line=True):
     l = []
-
     for i, t in enumerate(theta):
-        l.append(math.log(t) + math.log(1-t) * np.array(X).sum()/len(X))
+        l.append(
+            math.log(t) +
+            math.log(1-t) * (np.array(X).sum() / len(X))
+        )
 
     curmax, indmax = l[0], 0
     for i, t in enumerate(l):
@@ -52,23 +53,54 @@ def plotMLE(X, theta, input="DataFrame"):
         'likelihood': l
     })
 
-    likelihood_df.plot(x="theta", y="likelihood", grid=True, marker="o", markevery=[indmax])
+    if plot_line:
+        likelihood_df.plot(x="theta", y="likelihood", grid=True, marker="o", markevery=[indmax])
+    return l, indmax
+
+def plotMAP(X: list, theta, alpha: float=1.0, beta: float=2.0, plot_line=True):
+    l = []
+    for i, t in enumerate(theta):
+        l.append(
+            math.log(t) +
+            math.log(1-t) * (beta-1+ np.array(X).sum() )/(alpha-1+len(X)) +
+            0.5
+             # math.log(B(alpha, beta))
+        )
+
+    curmax, indmax = l[0], 0
+    for i, t in enumerate(l):
+        if t>curmax:
+            curmax=t
+            indmax=i
+    likelihood_df = pd.DataFrame({
+        'theta': theta,
+        'likelihood': l
+    })
+
+    if plot_line:
+        likelihood_df.plot(x="theta", y="likelihood", grid=True, marker="o", markevery=[indmax])
+    return l, indmax
 
 
 X = readtxt("D:/10701 ML/hw1/hw1_dataset.txt")
 theta = np.arange(0.01, 1., 0.01, dtype=float).tolist()
-# print(X[0:5])
 
-# plotMLE_all(X, theta)
+
 plotMLE(X[0:1000], theta)
 plotMLE(X[0:10000], theta)
 plotMLE(X, theta)
 
+plotMAP(X[0:1000], theta)
+plotMAP(X[0:10000], theta)
+plotMAP(X, theta)
+
+
+plt.show()
+
+
 
 # df = pd.DataFrame({'a':[1,2,3], 'b': [6,7,8]})
 # df['a'].plot(grid=True)
-plt.show()
-
 
 # print(np.arange(0.01, 1., 0.01, dtype=float).tolist())
 
