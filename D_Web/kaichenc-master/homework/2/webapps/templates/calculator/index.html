@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+</head>
+<body>
+
+<h1> Login </h1>
+
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <div>
+        <label>Username</label>
+        <input name="username" type="text" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input name="password" type="password" />
+        {# if type here is text, will not display anything in background#}
+    </div>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<h1>Demonstration</h1>
+<table border="1">
+    <thead>
+        <tr>Username</tr>
+        <tr>Password</tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.user }}</td>
+            <td>{{ item.pwd }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<h1>testing list @ index</h1>
+{% if list %}
+    <ul>
+    {% for items in list %}
+{#    <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>#}
+    <li> {{ items }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No lists are available.</p>
+{% endif %}
+
+
+</body>
+</html>

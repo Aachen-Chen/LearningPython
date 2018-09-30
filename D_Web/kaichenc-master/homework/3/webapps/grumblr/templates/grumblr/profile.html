@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static '/grumblr/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static '/grumblr/css/grumblr.css' %}">
+
+</head>
+
+
+<body>
+
+<ul     class="mynav">
+    <li class="mynav" style="float: left;"> <a href="{% url 'grumblr:home' %}">Grumblr</a></li>
+
+    <li class="mynav" style="float: right;"><a href="{% url 'grumblr:logout' %}">Log Out</a></li>
+{#    <li class="mynav" style="float: right;"><a class="myactive" href="{% url 'grumblr:profile' username %}">Profile</a></li>#}
+</ul>
+
+
+{#<div style="text-align: center">#}
+{#    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/Scotty0.jpg" alt="">#}
+{#</div>#}
+
+<header class="bg-primary text-white">
+    <div class="col-lg-6 max-auto container text-center">
+        <h1>{{ user.username }}</h1>
+{#        <p class="lead"> Think of yourself as at the threshold of unparalleled success. <br/>A whole, clear new life lies before you. <br/>Achieve! Achieve!</p>#}
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <hr class="myhr"/>
+            <!--<hr/>-->
+        </div>
+    </div>
+</div>
+
+<section id="info">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto" style="background-color: #FFFFFF; border: #FFFFFF solid 10px; border-bottom: #FFFFFF solid 30px">
+                <h3>About Me</h3>
+
+                    <ul class="mynormfont">
+                        <li>First name:     {{ user.first_name }}   </li>
+                        <li>Last name:      {{ user.last_name }}    </li>
+                        <li>Email:          {{ user.email }}        </li>
+                    </ul>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <hr class="myhr"/>
+        </div>
+    </div>
+</div>
+
+<section id="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto" style="background-color: #FFFFFF; border: #FFFFFF solid 10px; border-bottom: #FFFFFF solid 30px">
+                <h3>Past Posts</h3>
+
+                {% for posts in personal_stream %}
+
+                <div class="post-preview">
+                    <p class="post-meta">
+                        @{{ posts.author.username }}
+                        on {{ posts.pub_date }}
+                    </p>
+
+                        <p class="post-subtitle">
+                            {{ posts.body }}
+                            <br/>
+                        </p>
+
+                </div>
+                <hr/>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+
+
+</html>

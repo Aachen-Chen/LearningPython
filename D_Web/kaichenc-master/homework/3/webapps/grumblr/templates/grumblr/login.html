@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static '/grumblr/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static '/grumblr/css/grumblr.css' %}">
+
+
+</head>
+
+
+<body>
+
+<ul class="mynav">
+    <li class="mynav" style="float: left;"><a class="myactive" href="{% url 'grumblr:login' %}">Grumblr</a></li>
+    <li class="mynav" style="float: right;"><a href="{% url 'grumblr:rego' %}">Register</a></li>
+</ul>
+
+
+
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+
+                <h1 class="mb-5">Welcome back!</h1>
+                {% if form.errors %}
+                    <p style="color:red">
+                        Incorrect user name and password.
+                    </p>
+                {% endif %}
+
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form method="post" action="{% url 'grumblr:login' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                {{ form.username }}
+                        </div>
+
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                {{ form.password }}
+                        </div>
+
+                        <div class="col-12 col-md-3" style="width: 30%; margin-left: 35%">
+                            <input type="submit" value="Login" />
+                        </div>
+
+                        <hr/>
+
+                        <div class="col-12 col-md-3">
+                            <p>New to Grumblr? Just
+                                <a href="{% url 'grumblr:rego' %}">register</a>
+                                .
+                            </p>
+                        </div>
+
+                        <input type="hidden" name="next" value="{{ next }}" />
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+
+body{
+    background-color: #f0f6fa;
+}
+
+.myhr{
+    margin-top:10px;
+    margin-bottom:10px;
+    *margin: 0;
+    border: 0;
+    color: #e1e1e1;
+    background-color: #e1e1e1;
+    height: 1px
+}
+
+.mynormfont{
+    font-size: 18px;
+    font-family: "Segoe UI", Segoe, serif ;
+    line-height: 120%;
+
+    font-weight: 400;
+    /*margin: 10px 0;*/
+}
+
+ul.mynormfont>li{
+    line-height: 120%;
+}
+
+ul.mynav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    margin-bottom: 14px;
+}
+
+li.navicon {
+    /*float: right;*/
+}
+
+li.mynav a {
+    display: block;
+    color: #139afb;
+    text-align: center;
+    font-weight: bold;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.mynav a:hover:not(.myactive) {
+    background-color: #139afb;
+    color: #FFFFFF;
+}
+li.mynav a.myactive {
+    background-color: #139afb;
+    color: #FFFFFF;
+    /*font-color: #FFFFFF;*/
+}
+
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin-bottom: 14px;
+}
+
+li.nav {
+    float: left;
+}
+
+li a.nav {
+    display: block;
+    color: white;
+    text-align: center;
+    /*padding: 14px 16px;*/
+    padding: 14px 16px;
+    /*padding: 0;*/
+    text-decoration: none;
+}
+
+li a:hover.nav {
+    background-color: #111;
+}
+
+
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+.img-profile {
+    max-width: 10rem;
+    max-height: 10rem;
+    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+
+.col-lg-6 {
+    -ms-flex: 0 0 54.666667%;
+    flex: 0 0 56.666667%;
+    max-width: 54.666667%;
+}
+
+.col-lg-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.col-md-10 {
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+}
+
+
+
+.m-auto {
+    margin: auto !important;
+}
+
+.mt-auto,
+.my-auto {
+    margin-top: auto !important;
+}
+
+.mr-auto,
+.mx-auto {
+    margin-right: auto !important;
+}
+
+.mb-auto,
+.my-auto {
+    margin-bottom: auto !important;
+}
+
+.ml-auto,
+.mx-auto {
+    margin-left: auto !important;
+}
+
+
+
+#sentence{
+    text-align:center;
+}
+.left{
+    text-align:left;
+}
+.right{
+    text-align:right;
+}
+.bold{
+    font-weight:bold;
+}
+
+p.right span{
+    text-align:right;
+    font-weight:bold;
+}
+
+
+.post-preview:focus, .post-preview:hover{
+    /*text-decoration: none;*/
+    background-color: #f5f8fa;
+    /*color: #f5f8fa;*/
+}
+
+
+.post-preview > a {
+    color: #212529;
+}
+
+.post-preview > a:focus, .post-preview > a:hover {
+    text-decoration: none;
+    color: #0085A1;
+}
+
+.post-preview > a > .post-title {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+
+.post-preview .post-subtitle {
+
+    font-weight: 400;
+    margin: -5px 0 10px;
+    /*font-size: 20px;*/
+
+    font-size: 18px;
+    font-family: "Segoe UI", Segoe, serif ;
+    line-height: 120%;
+}
+
+.post-subtitle > img{
+    width: 100%;
+    margin: 10px 0 10px;
+    border: #f9f9f9 2px solid;
+}
+
+.post-preview > .post-meta {
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 0;
+    color: #868e96;
+}
+
+.post-preview > .post-meta > a {
+    text-decoration: none;
+    color: #212529;
+}
+
+.post-preview > .post-meta > a:focus, .post-preview > .post-meta > a:hover {
+    text-decoration: underline;
+    color: #0085A1;
+}
+
+@media only screen and (min-width: 768px) {
+    .post-preview > a > .post-title {
+        font-size: 36px;
+    }
+}
+
+
+
+
+/*floating-label-form-group*/
+.floating-label-form-group {
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.floating-label-form-group input,
+.floating-label-form-group textarea {
+    font-size: 1.5em;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    resize: none;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none !important;
+    font-family: 'Lora', 'Times New Roman', serif;
+}
+
+.floating-label-form-group input::-webkit-input-placeholder,
+.floating-label-form-group textarea::-webkit-input-placeholder {
+    color: #868e96;
+    font-family: 'Lora', 'Times New Roman', serif;
+}
+
+.floating-label-form-group label {
+    font-size: 0.85em;
+    line-height: 1.764705882em;
+    position: relative;
+    z-index: 0;
+    top: 2em;
+    display: block;
+    margin: 0;
+    -webkit-transition: top 0.3s ease, opacity 0.3s ease;
+    -moz-transition: top 0.3s ease, opacity 0.3s ease;
+    /*-ms-transition: top 0.3s ease, opacity 0.3s ease;*/
+    transition: top 0.3s ease, opacity 0.3s ease;
+    /*vertical-align: middle;*/
+    /*vertical-align: baseline;*/
+    opacity: 0;
+}
+
+.floating-label-form-group .help-block {
+    margin: 15px 0;
+}
+
+.floating-label-form-group-with-value label {
+    top: 0;
+    opacity: 1;
+}
+
+.floating-label-form-group-with-focus label {
+    color: #0085A1;
+}
+
+form .form-group:first-child .floating-label-form-group {
+    border-top: 1px solid #dee2e6;
+}
+
+
+
+/*help-block*/
+
+
+
+.control-group.warning .control-label,
+.control-group.warning .help-block,
+.control-group.warning .help-inline {
+    color: #c09853;
+}
+
+
+.control-group.error .control-label,
+.control-group.error .help-block,
+.control-group.error .help-inline {
+    color: #b94a48;
+}
+
+.control-group.success .control-label,
+.control-group.success .help-block,
+.control-group.success .help-inline {
+    color: #468847;
+}
+
+.control-group.info .control-label,
+.control-group.info .help-block,
+.control-group.info .help-inline {
+    color: #3a87ad;
+}
+
+.help-block,
+.help-inline {
+    color: #595959;
+}
+
+.help-block {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-horizontal .help-block {
+    margin-bottom: 0;
+}
+
+.form-horizontal input + .help-block,
+.form-horizontal select + .help-block,
+.form-horizontal textarea + .help-block,
+.form-horizontal .uneditable-input + .help-block,
+.form-horizontal .input-prepend + .help-block,
+.form-horizontal .input-append + .help-block {
+    margin-top: 10px;
+}

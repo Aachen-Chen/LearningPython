@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static '/grumblr/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static '/grumblr/css/grumblr.css' %}">
+
+    <style>
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+{# Navigation bar #}
+<ul     class="mynav">
+    <li class="mynav" style="float: left;"> <a class="myactive" href="{% url 'grumblr:home' %}">Grumblr</a></li>
+
+    <li class="mynav" style="float: right;"> <a href="{% url 'grumblr:logout' %}">Log Out</a></li>
+</ul>
+
+
+{# Edit new post #}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto" style="background-color: #FFFFFF; border: #FFFFFF solid 10px; border-bottom: #FFFFFF solid 30px">
+
+            <form method="post" action="{% url 'grumblr:post' %}" name="post" novalidate style="background-color: #e8f5fd ">
+                {% csrf_token %}
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group">
+                        <input name="body" type="text" style=" background-color: #ffffff; width:96%; border-radius:5px; margin: 1% 2% 0% 2%;">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Post" />
+                </div>
+
+                <div class="form-group">
+                    {% if error %}
+                        <p style="color:red">{{ error }}</p>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+
+{# Global Stream #}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto" style="background-color: #FFFFFF; border: #FFFFFF solid 10px">
+
+            {% for posts in global_stream %}
+
+            <div class="post-preview">
+                <p class="post-meta">
+                    <a href="{% url 'grumblr:profile' posts.author.username %}"> {{ posts.author.username }} </a>
+                    on {{ posts.pub_date }}
+                </p>
+                <a href="{% url 'grumblr:profile' posts.author.username %}">
+                    <h3 class="post-subtitle">
+                        {{ posts.body }}
+                        <br/>
+                    </h3>
+                </a>
+            </div>
+            <hr>
+
+            {% endfor %}
+
+
+{# Click for more buttom #}
+{#            <div class="clearfix">#}
+{#                <a class="btn btn-primary float-right" name="more" href="{% url "grumblr:home" %}">#}
+{#                    Click for more &rarr;#}
+{#                </a>#}
+{#            </div>#}
+        </div>
+    </div>
+</div>
+
+
+
+<!--footer-->
+<footer>
+    <p>Posted by: Kaichen Chen</p>
+</footer>
+
+
+
+</body>
+
+
+</html>

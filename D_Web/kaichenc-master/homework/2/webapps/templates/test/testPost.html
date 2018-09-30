@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="../" method="post">
+    {% csrf_token %}
+    <div>
+        <label for="t1"> cur </label>
+        <input id="t1" name="cur" type="text">
+    </div>
+    <div>
+        <label for="t2"> t2 </label>
+        <input id="t2" name="t2" type="text">
+    </div>
+    <div>
+        <label for="t3"> t3 </label>
+        <input id="t3" name="t3" type="text">
+    </div>
+    <input type="submit" style="border: 10px">
+</form>
+
+<form action="../" method="post">
+    {% csrf_token %}
+    <div>
+        <label for="cur"> cur </label>
+        <input id ="cur" name="cur" type="text">
+    </div>
+    <div>
+        <label for="opt"> opt </label>
+        <input id ="opt" name="opt" type="text">
+    </div>
+    <div>
+        <label for="mem"> mem </label>
+        <input id ="mem" name="mem" type="text">
+    </div>
+    <div>
+        <label for="new"> new </label>
+        <input id ="new" name="new" type="text">
+    </div>
+    <div>
+        <label for="display"> display </label>
+        <input id ="display" name="display" type="text">
+    </div>
+    <input type="submit" style="border: 10px">
+</form>
+
+</body>
+</html>

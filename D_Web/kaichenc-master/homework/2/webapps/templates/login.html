@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+
+<h1> Login </h1>
+
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <div>
+        <label>Username</label>
+        <input name="username" type="text" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input name="password" type="password" />
+        {# if type here is text, will not display anything in background#}
+    </div>
+    <input type="submit" value="Submit">
+</form>
+
+<hr/>
+
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td colspan="2"><input name="f1" type="text" value="a" ></td>
+        </tr>
+        <tr>
+{#            <td><input name="f2" type="text" value="b"></td>#}
+            <td><input name="s1" type="submit" value="s1"></td>
+        </tr>
+        <tr>
+{#            <td><input name="f3" type="text" value="c"></td>#}
+            <td><input name="s2" type="submit" value="s2"></td>
+        </tr>
+    </table>
+</form>
+
+
+<h1>Demonstration</h1>
+<table border="1">
+    <thead>
+        <tr>Username</tr>
+        <tr>Password</tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.user }}</td>
+            <td>{{ item.pwd }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<h1>testing list @ index</h1>
+{% if list %}
+    <ul>
+    {% for items in list %}
+{#    <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>#}
+    <li> {{ items }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No lists are available.</p>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+
+Muzzy(shunqi@cmu.edu):
+Log in page: can be simpler, perhaps move the picture to background.
+Registration: same as log in page
+
+Riven:
+Navigation bar is slightly imbalance. Trademark can be move to the left.
+
+Tokyo:
+Login page: two input is enough.
+Home page: users' post can have trantient background. 
+
+Jibi:
+Home page: user name takes too much space. One row is enough.
+Profile: 
+	Should include personal information.
+	Profile photo can be round.
+Background: can add picture or some light color.
+
+
+
+

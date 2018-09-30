@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+{#    <link rel="stylesheet" type="text/css" href="css/Notes_17637.css">#}
+
+    <title>17637</title>
+
+    <style type="text/css">
+        h1 {
+            color: #019bc6;
+        }
+        h2 {
+            text-transform: uppercase;
+            font-size: 14px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+            border-left: 5px solid #CCC;
+            padding-left: 10px;
+        }
+        li.horizontal{
+            float:left;
+        }
+        a.block{
+            display: block;
+            width: 150px;
+            background-color: #4cae4c;
+            text-align: center;
+        }
+    </style>
+
+    <script language="JavaScript">
+        var i=0;
+        function change(){
+            x=document.getElementsByTagName('h1');
+            x[0].style.color='#9136ff';
+        }
+        function changeImgbyNum(img){
+            if(i==3){i=0;} else i++;
+            img.src='/static/img/Scotty'+ i +'.jpg';
+        }
+        function changeImgbyMatch(img){
+            img.src = img.src.match('day')? "/static/img/buildingnight.jpg" : "/static/img/buildingday.jpg" ;
+            // img.width = img.src.match('day')? img.width, img
+        }
+        function subscribe(){
+            // alert("Welcome!");
+            document.getElementById("intro").innerHTML="" +
+                "<h2>You have subscribe to 17637 WebApps.</h2>" +
+                "<img onclick='changeImgbyNum(this)' src='/static/img/Scotty0.jpg' width='img.width*img.height/236' height='236' />" +
+                "<img onclick='changeImgbyMatch(this)' src='/static/img/buildingday.jpg' width='img.width*img.height/236' height='236' />"
+        }
+    </script>
+</head>
+
+
+<body>
+
+
+
+<h1 onclick="change()"> 17637 Web Application </h1>
+
+<p>
+    By <strong>Charlie Garroid</strong>
+    and <strong>Josh Sunshine</strong>
+    <br/>
+    sunshine@cs.cmu.edu
+</p>
+
+<p id='sentence'> My heart is in the work. </p>
+
+<p id="intro">
+    15637 Class Profile:
+    <a
+            href="https://piazza.com/cmu/fall2016/1543715637/home"
+            style="text-decoration:none;"
+    >
+        Piazza
+    </a>
+    <button type="button" onclick="subscribe()"> Subscribe </button>
+</p>
+
+
+<h2>
+    <span class="right">
+        2c HTTP &amp; HTML
+        <!--</span>-->
+        <!--<span class="right">-->
+        <!--<img src="images/chrome.gif", width="20", height="20">-->
+        <!--<span class="bold">-->
+        <!--[Edit]-->
+        <!--</span>-->
+    </span>
+</h2>
+
+<script>
+    document.write("<p>Hypertext Transmission Protocol and Hypertext Markup Language</p>")
+</script>
+
+<p class="right">
+    right indented information
+</p>
+
+<!--<p>-->
+<!--<span class="right">-->
+<!--right span information-->
+<!--</span>-->
+<!--</p>-->
+
+
+<h3>html</h3>
+<section>
+    <p>Abbreviations:</p>
+    <ul>
+        <!-- this is a comment -->
+        <li> un: unordered list
+        <li> li: list item
+        <li> ol: ordered list
+    </ul>
+
+
+    <p>UI design - draft, revise, refine
+    <ul style="overflow:hidden; list-style-type: none; margin: 0; padding: 0; ">
+        <li class="horizontal"> <a class="block">prototype</a>
+        <li class="horizontal"> <a class="block">wireframe</a>
+    </ul>
+
+    <p> Tools
+    <ul>
+        <li> get feedback
+        <li> Chrome developer tool
+        <li> references: MDN developer.mozilla.org
+        <li> W3Schools
+    </ul>
+
+    <p>Questions:
+    <ol>
+        <li> what to tpye between request line and header
+        <li> do i need vm and linux?
+        <li> how to work on localhost?
+    </ol></p>
+</section>
+
+<h3>First assignments:</h3>
+<section>
+    <p>GET with parameters</p>
+    <form action="http://garrod.isri.cmu.edu/webapps/methods/check-get" method="get">
+        What is your andrewid?      <input type="text" name="andrewid" value="kaichenc">
+        <br/>
+        Who is your favorite color? <input type="text" name="color"value="Red">
+        <br/>
+        <button type="submit"> Submit </button>
+    </form>
+
+    <p>POST with parameters
+    <form action="http://garrod.isri.cmu.edu/webapps/methods/check-post" method="post">
+        <div>
+            <label>What is your andrewid?</label>
+            <!--for="say"-->
+            <input name="andrewid" value="kaichenc">
+        </div>
+        <div>
+            Who is your favorite color?
+            <input name="color" value="Red">
+        </div>
+        <div>
+            <button>Send my greetings</button>
+        </div>
+    </form>
+    </p>
+</section>
+
+<h3>NOTES</h3>
+<section>
+    <p>telnet garrod.isri.cmu.edu 80</p>
+    <p>GET /webapps/methods/check-get?andrewid=kaichenc&color=blue HTTP/1.1</p>
+</section>
+
+</body>
+
+</html>

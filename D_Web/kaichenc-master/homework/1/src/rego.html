@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="css/grumblr.css">
+
+    <style>
+
+    </style>
+
+</head>
+
+
+<body>
+
+<ul     class="mynav">
+    <li class="mynav" style="float: left;"> <a href="login.html">Grumblr</a></li>
+    <li class="mynav" style="float: right;"><a href="login.html">Login</a></li>
+</ul>
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!--col-md-10-->
+            <h2> Tell us more about you?... </h2>
+            <form name="sentMessage" id="contactForm" novalidate>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>username</label>
+                        <input type="text" class="form-control" placeholder="Username" id="username" required data-validation-required-message="Please enter your username.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>firstname</label>
+                        <input type="text" class="form-control" placeholder="First Name" id="firstname" required data-validation-required-message="Please enter your first name.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>lastname</label>
+                        <input type="text" class="form-control" placeholder="Last Name" id="lastname" required data-validation-required-message="Please enter your last name.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password" id="pwd" required data-validation-required-message="Please enter your password.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Confirm password" id="confpwd" required data-validation-required-message="Please confirm your password here.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <br>
+                <div id="submit"></div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" id="registration">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

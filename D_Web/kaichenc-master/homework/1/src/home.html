@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="css/grumblr.css">
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+
+
+<ul     class="mynav">
+    <li class="mynav" style="float: left;"> <a class="myactive" href="home.html">Grumblr</a></li>
+    <li class="mynav" style="float: right;"><a href="login.html">Log Out</a></li>
+    <li class="mynav" style="float: right;"><a href="profile.html">Profile</a></li>
+</ul>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto" style="background-color: #FFFFFF; border: #FFFFFF solid 10px; border-bottom: #FFFFFF solid 30px">
+            <!--col-md-10-->
+            <form name="post" novalidate
+                style="background-color: #e8f5fd ">
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group">
+                        <label>Message</label>
+                        <textarea rows="2"
+                            class="form-control" id="message"
+                            placeholder="Something new today?"
+                            required data-validation-required-message="Please enter a message." style="
+                                background-color: #ffffff; width:96%; border-radius:5px; margin: -2% 2% -2% 2%;
+                                /*padding: 5px 1px 1px 1px;*/
+                            "
+                        ></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <!--<br>-->
+                <div id="success"></div>
+                <div class="form-group">
+                    <button type="submit"
+                            class="btn btn-primary" id="sendMessageButton"
+                            style="float:right">
+                        Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto" style="background-color: #FFFFFF; border: #FFFFFF solid 10px">
+            <!--col-md-10-->
+            <div class="post-preview">
+                <p class="post-meta">
+                    <a href="profile.html"> Kaichen Chen </a>
+                    on September 5, 2018
+                </p>
+                <a href="profile.html#post_180905">
+                    <h3 class="post-subtitle">
+                        So great to launch my first web design man! #WebApp@CMU
+                        <br/>
+                        <img src="img/17637 Courses.png">
+                    </h3>
+                </a>
+            </div>
+            <hr>
+
+            <div class="post-preview">
+                <p class="post-meta">
+                    <a href="https://www.nytimes.com/2018/09/02/business/richard-liu-arrest-minnesota-china.html"> @TheNewYorkTimes </a>
+                    on September 4, 2018</p>
+                <a href="https://www.nytimes.com/2018/09/02/business/richard-liu-arrest-minnesota-china.html">
+                    <h3 class="post-subtitle">
+                        A rock star of the new Gilded Age is accused of sexual misconduct, and his country is obsessed. Click for more.
+                    </h3>
+                </a>
+            </div>
+            <hr>
+
+            <div class="post-preview">
+                <p class="post-meta">
+                    <a href="https://twitter.com/cmuscience?lang=en">@CmuScience</a>
+                    on August 21, 2018</p>
+                <a href="https://twitter.com/CmuScience/status/1031964507038351360">
+                    <h3 class="post-subtitle">
+                        Exactly one year ago today, eclipse chaser and @Physics_CMU alum
+                        Gary Ropski reunited with his close friends and fellow @CarnegieMellon
+                        alumni in Wyoming to watch the first total #solareclipse in the
+                        U.S. in 38 years.<br/>
+                        <img src="img/solar.jpg" >
+                    </h3>
+                </a>
+            </div>
+            <hr>
+
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-primary float-right" href="#home">Click for more &rarr; </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--footer-->
+<footer>
+    <p>Posted by: Kaichen Chen</p>
+</footer>
+
+</body>
+
+
+</html>

@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Calculator</title>
+
+    
+    <!--custom css-->
+    <link rel="stylesheet" type="text/css" href="static/css/cal.css">
+</head>
+
+
+<body>
+
+<a href="testPost/">
+    testPost
+</a>
+
+
+<form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="ngGhcXXQCrbxcfV4ZHM1rbXVRmvOdphI4XndtEmD9oUU9CrCaxD5I9evWOAD6bCR">
+    <table class="fontface">
+        <tr>
+            <td class="screen" colspan="4">
+                <input name="display" type="text" readonly="readonly" value="0">
+            </td>
+        </tr>
+        <tr>
+            <td class="key" colspan="3">
+                <input class="col3" name="new" type="submit" value="C">
+            </td>
+            <td class="key"><input class="optkey" name="new" type="submit" value="/"></td>
+        </tr>
+        <tr>
+            <td class="key"><input class="digkey" name="new" type="submit" value="7"></td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="8"></td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="9"></td>
+            <td class="key"><input class="optkey" name="new" type="submit" value="*"></td>
+        </tr>
+        <tr>
+            <td class="key"><input class="digkey" name="new" type="submit" value="4"></td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="5"></td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="6"></td>
+            <td class="key"><input class="optkey" name="new" type="submit" value="-"></td>
+        </tr>
+        <tr>
+            <td class="key"><input class="digkey" name="new" type="submit" value="1"></td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="2"></td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="3"></td>
+            <td class="key"><input class="optkey" name="new" type="submit" value="+"></td>
+        </tr>
+        <tr>
+            <td class="key" colspan="2">
+                <input class="col2" name="new" type="submit" value="0">
+            </td>
+            <td class="key"><input class="digkey" name="new" type="submit" value="."></td>
+            <td class="key"><input class="optkey" name="new" type="submit" value="="></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input name="cur" type="hidden" value="0"></td>
+            <td><input name="mem" type="hidden" value="0"></td>
+            <td><input name="opt" type="hidden" value="0"></td>
+        </tr>
+    </table>
+    <p style="text-align: center; margin-top: 10px">  </p>
+</form>
+
+
+
+</body>
+</html>
+
+
