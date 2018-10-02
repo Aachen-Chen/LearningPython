@@ -85,19 +85,36 @@ def plotMAP(X: list, theta, alpha: float=1.0, beta: float=2.0, plot_line=True):
 X = readtxt("D:/10701 ML/hw1/hw1_dataset.txt")
 theta = np.arange(0.01, 1., 0.01, dtype=float).tolist()
 
+tags = ['MLE1k', 'MLE10k', 'MLE100k', 'MAP1k', 'MAP10k', 'MAP100k']
+maximum = [0,0,0,0,0,0]
+summary = pd.DataFrame(columns=tags)
 
-plotMLE(X[0:1000], theta)
-plotMLE(X[0:10000], theta)
-plotMLE(X, theta)
+summary["theta"]= theta
+summary[tags[0]], maximum[0]= plotMLE(X[0:1000], theta  , plot_line=False)
+summary[tags[1]], maximum[1]= plotMLE(X[0:10000], theta , plot_line=False)
+summary[tags[2]], maximum[2]= plotMLE(X, theta          , plot_line=False)
+summary[tags[3]], maximum[3]= plotMAP(X[0:1000], theta  , plot_line=False)
+summary[tags[4]], maximum[4]= plotMAP(X[0:10000], theta , plot_line=False)
+summary[tags[5]], maximum[5]= plotMAP(X, theta          , plot_line=False)
 
-plotMAP(X[0:1000], theta)
-plotMAP(X[0:10000], theta)
-plotMAP(X, theta)
+# summary.plot(x="theta", grid=True, marker='o', markers=maximum)
+# plt.plot(summary['theta'], summary[summary.columns.tolist()[1:-1]])
 
 
+# summary = summary
+summary = summary[:20]
+# summary = summary[5:15]
+for i in range(6):
+    plt.plot(summary['theta'], summary[tags[i]], marker='o', markevery=[maximum[i]])
+plt.legend(tags, loc='lower center', shadow=True)
 plt.show()
 
 
+
+# def returntwo():
+#     return 1, 2
+# a, b = returntwo()
+# print(a, b)
 
 # df = pd.DataFrame({'a':[1,2,3], 'b': [6,7,8]})
 # df['a'].plot(grid=True)
