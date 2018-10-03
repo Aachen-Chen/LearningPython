@@ -285,7 +285,7 @@ def predicts(d: DataFrame, t12:tuple=(0.4,0.4)):
         if d.loc[t, "pred"] != pred_1:
             # x_test.loc['t_r'] = 0.
             # print("--0--\n", x_test.loc['t_r'])
-            # pred_2 = model_with_result.predict(x_test.values.reshape(1, -1))
+            # pred_2 = model_with_result.predict(x_test.value.reshape(1, -1))
             pred_2 = 0 if pred_1 == 1 else 1
             d.loc[t, "pred"] = pred_2
             # print(d.loc[t, "pred"], pred_2)
@@ -293,9 +293,9 @@ def predicts(d: DataFrame, t12:tuple=(0.4,0.4)):
 
         # """ train with only correct prediction """
         # model_correct = GaussianNB().fit(
-        #     x_train.loc[x_train['t_r']==1, tag_5].values,
-        #     y_train.loc[x_train['t_r']==1, :].values.ravel() )
-        # d.loc[t, "pred"] = model_correct.predict(x_test.loc[tag_5].values.reshape(1, -1))
+        #     x_train.loc[x_train['t_r']==1, tag_5].value,
+        #     y_train.loc[x_train['t_r']==1, :].value.ravel() )
+        # d.loc[t, "pred"] = model_correct.predict(x_test.loc[tag_5].value.reshape(1, -1))
         # d.loc[t, "t2_r"] = 1 if d.loc[t, "pred"] == d.loc[t, 't'] else 0
 
     print("End of train_2")
@@ -469,7 +469,7 @@ def statistic(s:Series, p, freq:str='D', r_type:str='rtn'):
                 rtn, std = (rtn+1) ** 12. -1 , std * sqrt(12)
             sta.loc[lth[i + 1], :] = [rtn, std, rtn / std, max_dd]
     elif r_type == 'cum':
-        """万恶之源pd.Series(s.values)，没用的！还是原来的对象！"""
+        """万恶之源pd.Series(s.value)，没用的！还是原来的对象！"""
         ss= copy.deepcopy(s)
         s_l= s.index.tolist()
         for i, t in enumerate(s_l):

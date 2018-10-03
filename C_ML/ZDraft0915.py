@@ -64,7 +64,7 @@ def plotMAP(X: list, theta, alpha: float=1.0, beta: float=2.0, plot_line=True):
             math.log(t) +
             math.log(1-t) * (beta-1+ np.array(X).sum() )/(alpha-1+len(X)) +
             0.5
-             # math.log(B(alpha, beta))
+             # math.call(B(alpha, beta))
         )
 
     curmax, indmax = l[0], 0
@@ -121,17 +121,17 @@ plt.show()
 
 # print(np.arange(0.01, 1., 0.01, dtype=float).tolist())
 
-# l = df.iloc[:, 0].values.tolist()
+# l = df.iloc[:, 0].value.tolist()
 # l.insert(0, df.columns.tolist()[0])
 # print(l)
 
 # a =pd.DataFrame([1,2,3])
 # print(a)
 # print("--------")
-# b = a.values.tolist()
+# b = a.value.tolist()
 # print(b)
 # print("--------")
-# c = a.iloc[:,0].values.tolist()
+# c = a.iloc[:,0].value.tolist()
 # print(c)
 
 # a = [1,2,3]

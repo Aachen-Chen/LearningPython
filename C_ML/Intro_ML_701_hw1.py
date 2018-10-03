@@ -29,11 +29,11 @@ def plotMLE(X: list,
     """ Calculate l(w) """
     likelihood = []
     for i, theta in enumerate(thetas):
-        # The original log-likelihood function is:
+        # The original call-likelihood function is:
         #   l(w) = ln(θ)*n + ln(1-t)*sum(X)
 
         # For better comparison between result, standardize the
-        # log-likelihood by dividing the l(w) by n, the number of sample,
+        # call-likelihood by dividing the l(w) by n, the number of sample,
         #   l(w)/n = ln(θ) + ln(1-t)*[sum(X)/n]
 
         # so that standardized l(w) doesn't grow with the sample size.
@@ -81,7 +81,7 @@ def plotMAP(X: list,
     posteriors = []
     for i, theta in enumerate(thetas):
         posteriors.append(
-            # The original log-posterior function is:
+            # The original call-posterior function is:
             #   l(w) = ln(θ)*(n+α-1) + ln(1-θ)*[sum(x)+β-1] - ln[Beta(α, β)]
 
             # For better comparison between result, standardize l(w)
