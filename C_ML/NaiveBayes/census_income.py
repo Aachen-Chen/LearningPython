@@ -20,8 +20,8 @@ order of primary functions.
 data files dir: ../../data/C_ML
 
 @ line
-309: def run()
-372: calling run()
+344: def run()
+412: calling run()
 """
 
 
@@ -31,6 +31,16 @@ def call(func):
         # print('call %s():' % func.__name__)
         return func(*args, **kw)
     return wrapper
+
+def norm_pdf(x: float=0.0, mean: float=0.0, std: float=1.0, log_likelihood:bool=False)-> float:
+    denorm = 1 / sqrt(2 * pi * pow(std, 2))
+    power = - pow(x - mean, 2) / (2 * pow(std, 2))
+
+    if log_likelihood:
+        return log(denorm) + power
+    else:
+        return denorm * exp(power)
+
 
 
 class NaiveBayes(object):
@@ -83,6 +93,7 @@ class NaiveBayes(object):
     accuracy = {}
     accuracy_total = 0.0
     input_length = 0
+    decision = {}
 
     """
     Sort attributes and their value 
@@ -211,34 +222,55 @@ class NaiveBayes(object):
 
         Y = list(self.X.keys())
 
+        log_record={}
+
+
+
         for y_actual in Y:
             cur = 0
             for xik in self.X[y_actual]:
+                """"""
+                # print('\n xik: ', xik)
                 log_likelihood = {}
                 for y in Y:
+                    log_record[y] = {}
+                    # print(y)
                     log_likelihood[y] = log(self.prior[y])
                     for j in range(len(xik)):
                         if self.attr[j] in self.parameters[y]['discrete']:
+                            # print(self.parameters[y]['discrete'][self.attr[j]][xik[j]])
                             likelihood = self.parameters[y]['discrete'][self.attr[j]][xik[j]]
                             """
-                                No smooth, just make log(0) extremely small
+                                No smooth, just make log(0) negative infinity
                             """
                             if likelihood == 0:
-                                log_likelihood[y] += log(10**(-200))
+                                log_likelihood[y] += float('-inf')
+                                log_record[y][self.attr[j]] = float('-inf')
                             else:
                                 log_likelihood[y] += log(likelihood)
-                            # log_likelihood[y] += log(likelihood)
+                                log_record[y][self.attr[j]] = log(likelihood)
                         else:
+                            # print('xik parameters:', xik)
+                            # for key in self.parameters[y]['continuous'][self.attr[j]]:
+                            #     print(round(self.parameters[y]['continuous'][self.attr[j]][key],4), end=' ')
+
+                            # print(self.attr[j])
                             E = self.parameters[y]['continuous'][self.attr[j]]['mean']
                             S = self.parameters[y]['continuous'][self.attr[j]]['std']
-                            log_likelihood[y] += log(
-                                (1 / sqrt(2 * pi * (S ** 2 + 10 ** (-9))))
-                            ) -(float(xik[j]) - E) ** 2 / 2 * (S ** 2 + 10 ** (-9))
-
+                            temp = norm_pdf(x = float(xik[j]), mean = E, std=(S+10.**(-9.)), log_likelihood=True)
+                            log_likelihood[y] += temp
+                            log_record[y][self.attr[j]] = temp
                 xik.append(Y[0] if log_likelihood[Y[0]]>log_likelihood[Y[1]] else Y[1])
+                """"""
+                # print("\nlog_record", log_record)
                 if cur<7:
                     self.log_likelihood_record[cur] = copy.deepcopy(log_likelihood)
+                    self.decision[cur] = xik[-1]
+                    # print("Decision:", xik[-1])
+                    # print('\t', log_likelihood)
                 cur+=1
+
+        return log_record
 
     """
     Calculate accuracy
@@ -249,9 +281,7 @@ class NaiveBayes(object):
         self.accuracy_total = 0.
         self.input_length = 0.
 
-        Y = list(self.X.keys())
-
-        for y in Y:
+        for y in self.X.keys():
             self.accuracy[y] = 0.
             for xik in self.X[y]:
                 if xik[-1] == y:
@@ -284,7 +314,10 @@ class NaiveBayes(object):
                     datatype = 'continuous'
 
                 for value in self.parameters[v][datatype][attr]:
-                    print(value, "=", round(self.parameters[v][datatype][attr][value], 4), end=', ')
+                    if value=='std':
+                        print("var", "=", round((self.parameters[v][datatype][attr][value])**2, 4), end=', ')
+                    else:
+                        print(value, "=", round(self.parameters[v][datatype][attr][value], 4), end=', ')
                     sum+= self.parameters[v][datatype][attr][value]
                 # print('sum=', round(sum, 4))
                 print()
@@ -296,6 +329,7 @@ class NaiveBayes(object):
             for y in self.log_likelihood_record[record]:
                 print("\t", "Class", y, end=": ")
                 print('%.4f' % round(float(self.log_likelihood_record[record][y]), 4))
+            print(self.decision[record])
 
     @call
     def report_accuracy(self):
@@ -303,6 +337,7 @@ class NaiveBayes(object):
         for y in self.accuracy:
             print(y, '\t', round(self.accuracy[y], 4),
                   )
+        print(self.accuracy_total)
 
 
 @call
@@ -341,8 +376,76 @@ def run():
 
     ''' (c) '''
     n, train_accuracy, test_accuracy = [], [], []
-    base = 2
-    for i in range(5, 13):
+    base = 2.0
+    for i in range(5, 14):
+        n.append(int(pow(base, i)))
+        # n.append(int(i))
+        nb.getInput(trainFile, int(pow(base, i)))
+        nb.learn()
+        nb.predict()
+        nb.getAccuracy()
+        train_accuracy.append(nb.accuracy_total)
+        nb.getInput(testFile)
+        nb.predict()
+        nb.getAccuracy()
+        test_accuracy.append(nb.accuracy_total)
+
+    accuracy_plot = pd.DataFrame({
+        'n': n,
+        'train': train_accuracy,
+        'test': test_accuracy,
+    })
+    accuracy_plot.plot(x="n",
+                       y=['train', 'test'],
+                       # y='test',
+                       grid=True, marker="o"
+                       )
+    plt.show()
+    for i in range(5, 14):
+        print(i, "%.4f%%" %train_accuracy[i - 5])
+    for i in range(5, 14):
+        print(i, "%.4f%%" %test_accuracy[i - 5])
+
+    print("----end of run()----")
+
+""" Program start """
+run()
+
+
+
+
+
+""" Ignore below draft """
+
+@call
+def draft():
+    nb = NaiveBayes()
+    nb.attribute_processing()
+
+    trainFile = 'data/C_ML/adult.data.csv'
+    testFile = 'data/C_ML/adult.test.csv'
+    # nb.getInput(trainFile, int(pow(2,7)))
+    nb.getInput(trainFile)
+    nb.learn()
+
+    nb.getInput(testFile)
+    log_record = nb.predict()
+    nb.report_likelihood_data()
+    nb.getAccuracy()
+    nb.report_prior()
+    nb.report_accuracy()
+    print(nb.accuracy_total)
+    # print("log record: \n", log_record)
+
+def draft2():
+    nb = NaiveBayes()
+    nb.attribute_processing()
+    trainFile = 'data/C_ML/adult.data.csv'
+    testFile = 'data/C_ML/adult.test.csv'
+    n, train_accuracy, test_accuracy = [], [], []
+    base = 1.3
+    for i in range(9, 40):
+    # for i in range(6, 13):
         n.append(int(pow(base, i)))
         # n.append(int(i))
         nb.getInput(trainFile, int(pow(base, i)))
@@ -368,34 +471,7 @@ def run():
     plt.show()
     print("----end of run()----")
 
-""" Program start """
-run()
-
-
-
-
-
-""" Ignore below draft """
-
-@call
-def draft():
-    nb = NaiveBayes()
-    nb.attribute_processing()
-
-    trainFile = 'data/C_ML/adult.data.csv'
-    nb.getInput(trainFile, int(pow(2,7)))
-    nb.learn()
-
-    testFile = 'data/C_ML/adult.test.csv'
-    nb.getInput(testFile)
-    nb.predict()
-    nb.report_likelihood_data()
-    nb.getAccuracy()
-    nb.report_prior()
-    nb.report_accuracy()
-    print(nb.accuracy_total)
-
-# draft()
+# draft2()
 
 # print('Loaded data file {0} with {1} rows')
 
