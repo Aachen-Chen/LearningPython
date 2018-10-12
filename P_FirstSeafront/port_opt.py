@@ -33,16 +33,16 @@
     凸优化：
         （其中x为优化变量）
         线性规划 lp:
-            minimize    P.T x
+            minimize    P.T X
             subject to  Gx <= h
                         Ax = b
         二次规划 qp:
-            minimize    (1/2)x.T (XF[t-1]X[t-1] + sig[t-1] ) x
+            minimize    (1/2)X.T (XF[t-1]X[t-1] + sig[t-1] ) X
             s.t.        Gx <= h
                         Ax = b
         二阶锥规划 SOCP:
-            minimize    f.T x
-            s.t.        ||Ax + b||2 <= c.T x
+            minimize    f.T X
+            s.t.        ||Ax + b||2 <= c.T X
                         Fx = g
 
     缩写：
@@ -223,7 +223,7 @@ class Neutral_Port_Opt(object):
 
         一律对齐矩阵、向量。
         虽然np.dot(df1, df2)中，会自动对齐df的行列，
-        但若有丢失index/col的处理（如 np.diag(series), df.values），就失去自动对齐功能。
+        但若有丢失index/col的处理（如 np.diag(series), df.value），就失去自动对齐功能。
         故统一手动对齐。
 
         一律用expo的index/col对齐。（去掉双重索引）
@@ -394,7 +394,7 @@ def min_var_neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, spec_risk: Da
         h = np.vstack((     h,
             neu_fac_expo+0.0005,
             -(neu_fac_expo)+0.0005  ))
-        # print("expo:", expo[neu_fac].values)
+        # print("expo:", expo[neu_fac].value)
 
     G = cvxopt.matrix(G)
     h = cvxopt.matrix(h)
@@ -408,7 +408,7 @@ def min_var_neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, spec_risk: Da
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt
@@ -454,7 +454,7 @@ def max_rtn_neutral_portfolio(exp_rtn: Series, expo: DataFrame, neutral_list: li
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt
@@ -508,7 +508,7 @@ def min_tracking_error_neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, sp
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt

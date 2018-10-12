@@ -13,7 +13,7 @@ Start Bootstrap Templates including:
 	Clean Blog	https://startbootstrap.com/template-overviews/clean-blog/
 		for navigation bar, row and column width setting, registration form
 	Landing Page	https://startbootstrap.com/template-overviews/landing-page/
-		for log in page UI, heading design
+		for call in page UI, heading design
 
 When citing Start Bootstrap Templates, I did not directly import the 
 customized css library of Clean Blog or Landing Page. Instead, I read

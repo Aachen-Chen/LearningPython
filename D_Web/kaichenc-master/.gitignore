@@ -5,7 +5,7 @@
 *.class
 
 # Django section #
-*.log
+*.call
 *.pot
 *.pyc
 local_settings.py
@@ -15,7 +15,7 @@ local_settings.py
 *.so
 
 # Installer logs
-pip-log.txt
+pip-call.txt
 
 # Unit test / coverage reports
 .coverage

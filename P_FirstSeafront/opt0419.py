@@ -26,16 +26,16 @@ First developed by Aachen, QHKY
 优化框架：
     （其中x为优化变量）
     线性规划 lp:
-        minimize    P.T x
+        minimize    P.T X
         subject to  Gx <= h
                     Ax = b
     二次规划 qp:
-        minimize    (1/2)x.T P x + q.T x
+        minimize    (1/2)X.T P X + q.T X
         s.t.        Gx <= h
                     Ax = b
     二阶锥规划 SOCP:
-        minimize    f.T x
-        s.t.        ||Ax + b||2 <= c.T x
+        minimize    f.T X
+        s.t.        ||Ax + b||2 <= c.T X
                     Fx = g
 
 惯例：
@@ -190,7 +190,7 @@ def neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, neutral_list: list, m
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt
@@ -218,7 +218,7 @@ def min_var_neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, neutral_list:
             -expo[neu_fac].values ))
         h = np.vstack((     h,
             np.full((2, 1), 0.005)    ))
-        # print("expo:", expo[neu_fac].values)
+        # print("expo:", expo[neu_fac].value)
 
     G = cvxopt.matrix(G)
     h = cvxopt.matrix(h)
@@ -232,7 +232,7 @@ def min_var_neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, neutral_list:
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt
@@ -271,7 +271,7 @@ def max_rtn_neutral_portfolio(exp_rtn: Series, expo: DataFrame, neutral_list: li
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt
@@ -313,7 +313,7 @@ def min_tracking_error_neutral_portfolio(cov_mat: DataFrame, expo: DataFrame, be
     if sol['status'] != 'optimal':
         warnings.warn("Convergence problem")
 
-    port_wgt = pd.Series(sol['x'], index = expo.index)
+    port_wgt = pd.Series(sol['X'], index = expo.index)
 
     print("------ Opt solved. ------")
     return port_wgt
@@ -557,21 +557,21 @@ neutral_factor_expo = pd.DataFrame(
     {"bench": bench_expo.loc[:, Factor.SIZENL],
      "port": port_expo.loc[:, Factor.SIZENL]    }   )
 
-# port_wgt['sum'] = port_wgt.apply(lambda x: x.sum(), axis=1)
-# fac_rtn_rolling = fac_rtn.apply(lambda x: x.rolling(window=20, center=False).mean())
+# port_wgt['sum'] = port_wgt.apply(lambda X: X.sum(), axis=1)
+# fac_rtn_rolling = fac_rtn.apply(lambda X: X.rolling(window=20, center=False).mean())
 
 # 绘图区
-# rtn.plot(grid=True).axhline(y=1, color="black", lw=2)
+# rtn.plot(grid=True).axhline(Y=1, color="black", lw=2)
 # fac_rtn_rolling.plot(grid=True)
 # factor_price.plot(grid=True)
-# bench_expo.plot(grid=True).axhline(y=1, color="black", lw=2)
+# bench_expo.plot(grid=True).axhline(Y=1, color="black", lw=2)
 port_expo.plot(grid=True).axhline(y=1, color="black", lw=2)
 neutral_factor_expo.plot(grid=True).axhline(y=1, color="black", lw=2)
 cum_rtn.plot(grid=True).axhline(y=1, color="black", lw=2)
 fac_cum_rtn.plot(grid=True).axhline(y=1, color="black", lw=2)
 
-# fac_rtn.plot(grid=True).axhline(y=1, color="black", lw=2)
-# port_wgt.plot(grid=True).axhline(y=1, color="black", lw=2)
+# fac_rtn.plot(grid=True).axhline(Y=1, color="black", lw=2)
+# port_wgt.plot(grid=True).axhline(Y=1, color="black", lw=2)
 plt.show()
 
 print("Exit: test_min_var_portfolio()")
@@ -636,7 +636,7 @@ def port_analysis(port_rtn: DataFrame, bench_rtn: DataFrame, period: Period = No
     bench_rtn.iloc[o:in_num] = 0
     rtn = DataFrame({ 'port_rtn': port_rtn,
                       'bench_rtn': bench_rtn })
-    cum_rtn = DataFrame(rtn.apply(lambda x: pd.Series(np.cumprod(np.nan_to_num(np.array(x))+1))))
+    cum_rtn = DataFrame(rtn.apply(lambda X: pd.Series(np.cumprod(np.nan_to_num(np.array(X))+1))))
     cum_rtn.index = bench_rtn['T_Date']
 
     cum_rtn.plot(grid = True)

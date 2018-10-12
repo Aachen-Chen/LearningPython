@@ -1,7 +1,7 @@
 
 Muzzy(shunqi@cmu.edu):
 Log in page: can be simpler, perhaps move the picture to background.
-Registration: same as log in page
+Registration: same as call in page
 
 Riven:
 Navigation bar is slightly imbalance. Trademark can be move to the left.

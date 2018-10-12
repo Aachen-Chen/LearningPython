@@ -167,7 +167,7 @@ class NaiveBayes(object):
         """
         # i is index of sample (row of X)
         # j is index of attribute (column of X)
-        # k is value of y
+        # k is value of Y
         """
         # for each class 0 / 1
         for y in Y:
@@ -234,11 +234,11 @@ class NaiveBayes(object):
                 log_likelihood = {}
                 for y in Y:
                     log_record[y] = {}
-                    # print(y)
+                    # print(Y)
                     log_likelihood[y] = log(self.prior[y])
                     for j in range(len(xik)):
                         if self.attr[j] in self.parameters[y]['discrete']:
-                            # print(self.parameters[y]['discrete'][self.attr[j]][xik[j]])
+                            # print(self.parameters[Y]['discrete'][self.attr[j]][xik[j]])
                             likelihood = self.parameters[y]['discrete'][self.attr[j]][xik[j]]
                             """
                                 No smooth, just make log(0) negative infinity
@@ -251,8 +251,8 @@ class NaiveBayes(object):
                                 log_record[y][self.attr[j]] = log(likelihood)
                         else:
                             # print('xik parameters:', xik)
-                            # for key in self.parameters[y]['continuous'][self.attr[j]]:
-                            #     print(round(self.parameters[y]['continuous'][self.attr[j]][key],4), end=' ')
+                            # for key in self.parameters[Y]['continuous'][self.attr[j]]:
+                            #     print(round(self.parameters[Y]['continuous'][self.attr[j]][key],4), end=' ')
 
                             # print(self.attr[j])
                             E = self.parameters[y]['continuous'][self.attr[j]]['mean']
@@ -397,7 +397,7 @@ def run():
     })
     accuracy_plot.plot(x="n",
                        y=['train', 'test'],
-                       # y='test',
+                       # Y='test',
                        grid=True, marker="o"
                        )
     plt.show()
@@ -465,7 +465,7 @@ def draft2():
     })
     accuracy_plot.plot(x="n",
                        y=['train', 'test'],
-                       # y='test',
+                       # Y='test',
                        grid=True, marker="o"
                        )
     plt.show()

@@ -82,7 +82,7 @@ def plotMAP(X: list,
     for i, theta in enumerate(thetas):
         posteriors.append(
             # The original call-posterior function is:
-            #   l(w) = ln(θ)*(n+α-1) + ln(1-θ)*[sum(x)+β-1] - ln[Beta(α, β)]
+            #   l(w) = ln(θ)*(n+α-1) + ln(1-θ)*[sum(X)+β-1] - ln[Beta(α, β)]
 
             # For better comparison between result, standardize l(w)
             # by dividing by (n+α-1):

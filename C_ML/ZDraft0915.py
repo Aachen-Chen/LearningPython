@@ -97,7 +97,7 @@ summary[tags[3]], maximum[3]= plotMAP(X[0:1000], theta  , plot_line=False)
 summary[tags[4]], maximum[4]= plotMAP(X[0:10000], theta , plot_line=False)
 summary[tags[5]], maximum[5]= plotMAP(X, theta          , plot_line=False)
 
-# summary.plot(x="theta", grid=True, marker='o', markers=maximum)
+# summary.plot(X="theta", grid=True, marker='o', markers=maximum)
 # plt.plot(summary['theta'], summary[summary.columns.tolist()[1:-1]])
 
 

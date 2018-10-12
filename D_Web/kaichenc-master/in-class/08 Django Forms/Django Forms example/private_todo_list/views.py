@@ -5,7 +5,7 @@ from django.db import transaction
 # Decorator to use built-in authentication system
 from django.contrib.auth.decorators import login_required
 
-# Used to create and manually log in a user
+# Used to create and manually call in a user
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 

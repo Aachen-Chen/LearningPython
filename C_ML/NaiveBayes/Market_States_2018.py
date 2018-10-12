@@ -411,7 +411,7 @@ def trade(d: DataFrame,
             dd.loc[td, 'p_cum'] = dd.loc[td, 'p_rtn']
 
     d['p_rtn'] = dd['p_rtn']
-    # dd = dd.apply(lambda x: np.cumprod(x+1)-1)
+    # dd = dd.apply(lambda X: np.cumprod(X+1)-1)
     d['b_cum'] = np.cumprod(dd['rtn']+1)-1
     # d['b_cum'] = dd['rtn']
     d['p_cum'] = dd['p_cum']
