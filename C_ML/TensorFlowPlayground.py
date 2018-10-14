@@ -9,3 +9,5 @@ session.run(X.initializer)
 session.run(Y.initializer)
 print(session.run(f))
 session.close()
+
+
