@@ -25,7 +25,17 @@ class NumPyExample():
         print(sequence_)
 
 
-NumPyExample.shaping()
+# NumPyExample.shaping()
 
+def EmptyMatrix():
+    z = np.zeros((5,2))
+    o = np.ones((5,2)).T
+    # print(z)
+    # print(o)
+    # print(z+o)
 
+def randoms():
+    print(np.random.random(size=(3,2)))
+
+randoms()
 

@@ -3,23 +3,18 @@ import csv
 import copy
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.mixture import GaussianMixture
-# from scipy.stats import norm
 
 
 def dictionaryExample():
-
 
     dictionary = {'a': 1, 'b': 2}
     for key in dictionary:
         print(dictionary[key])
 
-dictionaryExample()
+# dictionaryExample()
 
 
 def listExample():
-    l = [1,2,3,4,5]
     l = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
     print(l[0:1])
 
@@ -31,6 +26,20 @@ def listExample():
     zip_l = zip(l)
     for i in zip_l:
         print(i)
+
+    print('Best practice:')
+    zip_l = zip(*l)
+    for i in zip_l:
+        print(list(i))
+
+    print("Sum each column:")
+    print([
+        sum(column)
+        for column
+        in zip(*l)
+    ])
+
+# listExample()
 
 def listAndArray():
     # if ndarray change 2d list accordingly
@@ -50,11 +59,30 @@ def listAndArray():
     for row in a:
         print(row)
 
+# listAndArray()
 
-print('abc')
-class Any(object):
-    def run(self):
-        print('abc')
+def MapAndLambda():
+    # we want to standardize each row.
+    l = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+
+    # Example of map:
+    a = [x for x in map(lambda x:x+1, l[0])]
+    print(a)
+
+    print("Example on matrix")
+    a = [[round(r,4) for r in map(lambda a: a/sum(row), row)]
+         for row
+         in l]
+    print(a)
+
+MapAndLambda()
+
+def others():
+    print('abc')
+
+    class Any(object):
+        def run(self):
+            print('abc')
 
 
 
