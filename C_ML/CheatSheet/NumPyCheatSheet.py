@@ -16,9 +16,11 @@ class NumPyExample():
         print(sequence24)
         print(sequence42)
 
+        # one column
         sequence_ = sequence42.reshape(-1, 1)
         print(sequence_)
 
+        # one row
         sequence_ = sequence42.reshape(1, -1)
         print(sequence_)
 

@@ -9,19 +9,19 @@ import matplotlib.pyplot as plt
 """
 AndrewID: kaichenc; name: Kaichen Chen
  
-Run the run() to learn, predict, 
+Run the main() to learn, predict, 
 print data including prior / parameters / 
 accuracy, and plot the relation between
 number-of-sample and accuracy.
 
-Please read run() first to see the 
+Please read main() first to see the 
 order of primary functions. 
 
 data files dir: ../../data/C_ML
 
 @ line
-344: def run()
-412: calling run()
+344: def main()
+412: calling main()
 """
 
 
@@ -406,7 +406,7 @@ def run():
     for i in range(5, 14):
         print(i, "%.4f%%" %test_accuracy[i - 5])
 
-    print("----end of run()----")
+    print("----end of main()----")
 
 """ Program start """
 run()
@@ -424,7 +424,7 @@ def draft():
 
     trainFile = 'data/C_ML/adult.data.csv'
     testFile = 'data/C_ML/adult.test.csv'
-    # nb.getInput(trainFile, int(pow(2,7)))
+    # nb.getInputArray(trainFile, int(pow(2,7)))
     nb.getInput(trainFile)
     nb.learn()
 
@@ -469,7 +469,7 @@ def draft2():
                        grid=True, marker="o"
                        )
     plt.show()
-    print("----end of run()----")
+    print("----end of main()----")
 
 # draft2()
 

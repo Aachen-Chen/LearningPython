@@ -5,9 +5,9 @@ import tensorflow as tf
 # f = X * X * Y + Y + 2
 #
 # session = tf.Session()
-# session.run(X.initializer)
-# session.run(Y.initializer)
-# print(session.run(f))
+# session.main(X.initializer)
+# session.main(Y.initializer)
+# print(session.main(f))
 # session.close()
 
 
