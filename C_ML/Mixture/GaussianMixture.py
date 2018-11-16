@@ -35,6 +35,20 @@ def call(func):
     return wrapper
 
 
+
+
+@call
+def getInput(filename:str) -> np.ndarray:
+    input = np.array([
+        list(map(float, row[0:5]))
+        for row
+        in list(csv.reader(open(filename, 'r'), delimiter =' '))
+    ])
+    # print(input)
+    n, p = np.shape(input)
+    # print('Input size:{0}, {1}'.format(n, p))
+    return input
+
 def norm_pdf(x:float=0.0, mean:float= 0.0, std:float=1.0, log_likelihood:bool=False) -> float:
     denorm = 1 / sqrt(2 * pi * pow(std, 2))
     power = - pow(x - mean, 2) / (2 * pow(std, 2))
@@ -53,38 +67,31 @@ def norm_pdf(x:float=0.0, mean:float= 0.0, std:float=1.0, log_likelihood:bool=Fa
 #
 # test()
 
-@call
-def percepton(x:np.ndarray, y:int, weight:np.ndarray, bias)->bool:
-    return (y * (np.inner(weight, x) + bias)) > 0
-
 def responsibility(x:list, u:list, s:list, pi:list)-> list:
-    # x: n, k;  u: k, d;   s: k;    pi: k;
-    denominator = 0.
-    for i in range(0, len(x)):
-        pass
-    # z: n, k
-    return list()
+    # x: n, d;  u: k, d;   s: k;    pi: k;
+    N = len(x)
+    K = len(u)
+    D = len(x[0])
+    z = []
+    for k in range(0, K):
+        z.append([])
+        for n in range(0, N):
+            pdf = 1.0
+            for d in range(0, D):
+                pdf = pdf * norm_pdf(x[n][d], u[k][d], s[k])
+            z[k].append(pi[k] * pdf)
+    return z
 
 def new_mean(r:list, x:list)->list:
     # r: n, k;  x: n, k
     # nk: k;
-    nk = []
+    nk = [sum(column)
+          for column
+          in zip(*r)]
+
 
     # u: k, d
     return list()
-
-
-@call
-def getInput(filename:str) -> np.ndarray:
-    input = np.array([
-        list(map(float, row[0:5]))
-        for row
-        in list(csv.reader(open(filename, 'r'), delimiter =' '))
-    ])
-    # print(input)
-    n, p = np.shape(input)
-    # print('Input size:{0}, {1}'.format(n, p))
-    return input
 
 @call
 def main():
@@ -93,32 +100,32 @@ def main():
     gmm = GaussianMixture(n_components=3, covariance_type='spherical', init_params='random', max_iter=1000)
     gmm.fit(XTrain)
 
-    # Question 5.1
-    for i in range(0, 3):
-        print('Component {0}:\n'
-              '  mean:  {1}\n'
-              '  stds:  {2}\n'
-              '  weig:  {3}'
-              ''.format(
-            i, gmm.means_[i].round(4),
-            round(sqrt(gmm.covariances_[i]), 4),
-            gmm.weights_[i].round(4)
-        ))
-
-    # Question 5.2
-    label = gmm.predict(XTrain)
-    plt.scatter(XTrain[:, 0], XTrain[:, 1], c=label, cmap='viridis')
-    plt.xlabel('xi1')
-    plt.ylabel('xi2')
-    plt.show()
-    plt.scatter(XTrain[:, 2], XTrain[:, 3], c=label, cmap='viridis')
-    plt.xlabel('xi3')
-    plt.ylabel('xi4')
-    plt.show()
-    plt.scatter(XTrain[:, 3], XTrain[:, 4], c=label, cmap='viridis')
-    plt.xlabel('xi4')
-    plt.ylabel('xi5')
-    plt.show()
+    # # Question 5.1
+    # for i in range(0, 3):
+    #     print('Component {0}:\n'
+    #           '  mean:  {1}\n'
+    #           '  stds:  {2}\n'
+    #           '  weig:  {3}'
+    #           ''.format(
+    #         i, gmm.means_[i].round(4),
+    #         round(sqrt(gmm.covariances_[i]), 4),
+    #         gmm.weights_[i].round(4)
+    #     ))
+    #
+    # # Question 5.2
+    # label = gmm.predict(XTrain)
+    # plt.scatter(XTrain[:, 0], XTrain[:, 1], c=label, cmap='viridis')
+    # plt.xlabel('xi1')
+    # plt.ylabel('xi2')
+    # plt.show()
+    # plt.scatter(XTrain[:, 2], XTrain[:, 3], c=label, cmap='viridis')
+    # plt.xlabel('xi3')
+    # plt.ylabel('xi4')
+    # plt.show()
+    # plt.scatter(XTrain[:, 3], XTrain[:, 4], c=label, cmap='viridis')
+    # plt.xlabel('xi4')
+    # plt.ylabel('xi5')
+    # plt.show()
 
     # Question 5.3
 
